@@ -64,6 +64,238 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-variable变量" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/30/variable%E5%8F%98%E9%87%8F/" class="article-date">
+  <time datetime="2021-08-30T03:40:18.000Z" itemprop="datePublished">2021-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/30/variable%E5%8F%98%E9%87%8F/">variable变量</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="全局变量var-也是顶层变量"><a href="#全局变量var-也是顶层变量" class="headerlink" title="全局变量var,也是顶层变量"></a>全局变量var,也是顶层变量</h3><pre><code>ES5中常用，全局作用域，声明一次，在项目中任何地方都可以用，并且都可以修改，不存在暂时性死区问题
+存在变量提升
+`
+    console.log(aaa)        //undefined
+    var aaa = 1
+`
+为什么会打印undefined?原因如下，编译器把上述代码当成了这样执行:
+`
+    var aaa 
+    console.log(aaa)
+    aaa = 1
+`
+使用var，我们可以进行多次声明，后边声明的会覆盖掉之前的
+`
+    var b = 1
+    console.log(b)          //1
+    var b = 2
+    console.log(b)          //2
+`
+顶层对象，在浏览器环境中指window，在Node中指global
+`
+    var a = 1
+    console.log(window.a)   //1
+`
+如果在函数中使用使用var声明变量时候，变量是局部的
+`
+    var a = 20
+    function change()&#123;
+        var a = 30
+    &#125;
+    change()
+    console.log(a) // 20
+`
+而如果在函数内不使用var，该变量是全局的
+`
+    var a = 20
+    function change()&#123;
+        a = 30
+    &#125;
+    change()
+    console.log(a) // 30
+`
+</code></pre>
+<h3 id="let，let是局部变量，用法类似于var，但只作用于自己的作用域"><a href="#let，let是局部变量，用法类似于var，但只作用于自己的作用域" class="headerlink" title="let，let是局部变量，用法类似于var，但只作用于自己的作用域"></a>let，let是局部变量，用法类似于var，但只作用于自己的作用域</h3><pre><code>如果在作用域外使用，则会报错
+`
+    &#123;
+        let b = 1
+    &#125;
+    console.log(b)   // ReferenceError: b is not defined.
+`
+不存在变量提升
+`
+    console.log(a)  //ReferenceError
+    let a = 2
+`
+使用let声明变量前，该变量都不可用，也就是大家常说的“暂时性死区”
+let不允许在相同作用域中重复声明
+`
+    let a = 20
+    let a = 30
+    // Uncaught SyntaxError: Identifier &#39;a&#39; has already been declared
+`
+我们不能在函数内部重新声明参数
+`
+    function func(arg) &#123;
+        let arg;
+    &#125;
+    func()
+    // Uncaught SyntaxError: Identifier &#39;arg&#39; has already been declared
+`
+</code></pre>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><pre><code>const声明一个只读的常量，一旦声明，常量的值就不能改变
+`
+    const a = 1
+    a = 3
+    // TypeError: Assignment to constant variable.
+`
+这意味着，const一旦声明变量，就必须立即初始化，不能留到以后赋值
+`
+    const a;
+    // SyntaxError: Missing initializer in const declaration
+`
+如果之前用var或let声明过变量，再用const声明同样会报错
+`
+    var a = 20
+    let b = 20
+    const a = 30
+    const b = 30
+    // 都会报错
+`
+const实际上保证的并不是变量的值不得改动，而是变量指向的那个内存地址所保存的数据不得改动
+对于简单类型的数据，值就保存在变量指向的那个内存地址，因此等同于常量
+对于复杂类型的数据，变量指向的内存地址，保存的只是一个指向实际数据的指针，const只能保证这个指针是固定的，并不能确保改变量的结构不变
+`
+    const foo = &#123;&#125;;
+
+    // 为 foo 添加一个属性，可以成功
+    foo.prop = 123;
+    foo.prop // 123
+
+    // 将 foo 指向另一个对象，就会报错
+    foo = &#123;&#125;; // TypeError: &quot;foo&quot; is read-only
+`
+其它情况，const与let一致
+</code></pre>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><h4 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h4><pre><code>var声明的变量存在变量提升，即变量可以在声明之前调用，值为undefined
+let和const不存在变量提升，即它们所声明的变量一定要在声明后使用，否则报错
+`
+    // var
+    console.log(a)  // undefined
+    var a = 10
+
+    // let 
+    console.log(b)  // Cannot access &#39;b&#39; before initialization
+    let b = 10
+
+    // const
+    console.log(c)  // Cannot access &#39;c&#39; before initialization
+    const c = 10
+`
+</code></pre>
+<h4 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h4><pre><code>var不存在暂时性死区
+let和const存在暂时性死区，只有等到声明变量的那一行代码出现，才可以获取和使用该变量
+`
+    // var
+    console.log(a)  // undefined
+    var a = 10
+
+    // let
+    console.log(b)  // Cannot access &#39;b&#39; before initialization
+    let b = 10
+
+    // const
+    console.log(c)  // Cannot access &#39;c&#39; before initialization
+    const c = 10
+`
+</code></pre>
+<h4 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h4><pre><code>var不存在块级作用域
+let和const存在块级作用域
+`
+    // var
+    &#123;
+        var a = 20
+    &#125;
+    console.log(a)  // 20
+
+    // let
+    &#123;
+        let b = 20
+    &#125;
+    console.log(b)  // Uncaught ReferenceError: b is not defined
+
+    // const
+    &#123;
+        const c = 20
+    &#125;
+    console.log(c)  // Uncaught ReferenceError: c is not defined
+`
+</code></pre>
+<h4 id="重复声明"><a href="#重复声明" class="headerlink" title="重复声明"></a>重复声明</h4><pre><code>var允许重复声明变量
+let和const在同一作用域不允许重复声明变量
+`
+    // var
+    var a = 10
+    var a = 20 // 20
+
+    // let
+    let b = 10
+    let b = 20 // Identifier &#39;b&#39; has already been declared
+
+    // const
+    const c = 10
+    const c = 20 // Identifier &#39;c&#39; has already been declared
+`
+</code></pre>
+<h4 id="修改声明的变量"><a href="#修改声明的变量" class="headerlink" title="修改声明的变量"></a>修改声明的变量</h4><pre><code>var和let可以
+const声明一个只读的常量。一旦声明，常量的值就不能改变
+`
+    // var
+    var a = 10
+    a = 20
+    console.log(a)  // 20
+
+    //let
+    let b = 10
+    b = 20
+    console.log(b)  // 20
+
+    // const
+    const c = 10
+    c = 20
+    console.log(c) // Uncaught TypeError: Assignment to constant variable
+`
+</code></pre>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><pre><code>能用const的情况尽量使用const，其他情况下大多数使用let，避免使用var
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hexo.chenxt.top/2021/08/30/variable%E5%8F%98%E9%87%8F/" data-id="cksy6vhmi00075wu53sbhdsc5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-currying柯里化函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/08/30/currying%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/" class="article-date">
@@ -115,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/currying%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/" data-id="cksy3durq0001l4u5a3o18bie" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/currying%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/" data-id="cksy6vhm900005wu54xx1edk7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -184,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/promise/" data-id="cksy3durs0004l4u58m8u3epj" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/promise/" data-id="cksy6vhmg00055wu5boxfc6ci" class="article-share-link">Share</a>
       
       
     </footer>
@@ -245,7 +477,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/throttle/" data-id="cksy3duru0007l4u59so68sks" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/throttle/" data-id="cksy6vhmh00065wu594qi1iiz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -314,7 +546,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/debounce/" data-id="cksy3durs0003l4u5cg9jdeo0" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/debounce/" data-id="cksy6vhme00025wu56e18hh91" class="article-share-link">Share</a>
       
       
     </footer>
@@ -377,7 +609,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/computed/" data-id="cksy3durm0000l4u5bcj02hsh" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/computed/" data-id="cksy6vhmd00015wu57shx8ipy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -435,7 +667,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/25/difOfAndroidAndIosTime/" data-id="cksy3durr0002l4u51ov614sk" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/25/difOfAndroidAndIosTime/" data-id="cksy6vhmi00085wu55s7b9fop" class="article-share-link">Share</a>
       
       
     </footer>
@@ -472,7 +704,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/20/newpapername/" data-id="cksy3durt0005l4u55fjc4vis" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/20/newpapername/" data-id="cksy6vhmf00035wu5aidgftgj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -521,7 +753,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/20/hello-world/" data-id="cksy3duru0006l4u56a40bkj7" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/20/hello-world/" data-id="cksy6vhmg00045wu52jmih7d6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -562,6 +794,10 @@ Android
       <ul>
         
           <li>
+            <a href="/2021/08/30/variable%E5%8F%98%E9%87%8F/">variable变量</a>
+          </li>
+        
+          <li>
             <a href="/2021/08/30/currying%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/">currying柯里化函数</a>
           </li>
         
@@ -575,10 +811,6 @@ Android
         
           <li>
             <a href="/2021/08/30/debounce/">debounce防抖</a>
-          </li>
-        
-          <li>
-            <a href="/2021/08/30/computed/">computed计算属性的用法区别</a>
           </li>
         
       </ul>
