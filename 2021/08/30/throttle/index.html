@@ -5,17 +5,17 @@
   
 
   
-  <title>newpapername | 小陈同学</title>
+  <title>throttle节流 | 小陈同学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&#x3D;&#x3D;&#x3D;&#x3D;这里是标题&#x3D;&#x3D;&#x3D;&#x3D;">
+  <meta name="description" content="函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法    &#x2F;**     * @desc 函数节流     * @param func 函数     * @param wait 延迟执行毫秒数     * @param type 1 表时间戳版，2 表定时器版     *&#x2F;     const throttle &#x3D; (func">
 <meta property="og:type" content="article">
-<meta property="og:title" content="newpapername">
-<meta property="og:url" content="https://hexo.chenxt.top/2021/08/20/newpapername/index.html">
+<meta property="og:title" content="throttle节流">
+<meta property="og:url" content="https://hexo.chenxt.top/2021/08/30/throttle/index.html">
 <meta property="og:site_name" content="小陈同学">
-<meta property="og:description" content="&#x3D;&#x3D;&#x3D;&#x3D;这里是标题&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:description" content="函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法    &#x2F;**     * @desc 函数节流     * @param func 函数     * @param wait 延迟执行毫秒数     * @param type 1 表时间戳版，2 表定时器版     *&#x2F;     const throttle &#x3D; (func">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-20T08:09:00.000Z">
-<meta property="article:modified_time" content="2021-08-25T02:50:25.222Z">
+<meta property="article:published_time" content="2021-08-30T03:01:14.000Z">
+<meta property="article:modified_time" content="2021-08-30T03:06:52.669Z">
 <meta property="article:author" content="小陈同学">
 <meta name="twitter:card" content="summary">
   
@@ -66,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-newpapername" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-throttle" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/08/20/newpapername/" class="article-date">
-  <time datetime="2021-08-20T08:09:00.000Z" itemprop="datePublished">2021-08-20</time>
+    <a href="/2021/08/30/throttle/" class="article-date">
+  <time datetime="2021-08-30T03:01:14.000Z" itemprop="datePublished">2021-08-30</time>
 </a>
     
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      newpapername
+      throttle节流
     </h1>
   
 
@@ -88,12 +88,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>====<br>这里是标题<br>====</p>
-
+        <h3 id="函数如下，调用方式-throttle-this-search-1000-1-其中this-search为本地的方法"><a href="#函数如下，调用方式-throttle-this-search-1000-1-其中this-search为本地的方法" class="headerlink" title="函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法"></a>函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法</h3><p><code>    /**     * @desc 函数节流     * @param func 函数     * @param wait 延迟执行毫秒数     * @param type 1 表时间戳版，2 表定时器版     */     const throttle = (func, wait ,type) =&gt; &#123;         let previous = 0;         let timeout;         return function() &#123;             let context = this;             let args = arguments;             if(type===1)&#123;                 let now = Date.now();                 if (now - previous &gt; wait) &#123;                     func.apply(context, args);                     previous = now;                 &#125;             &#125;else if(type===2)&#123;                 if (!timeout) &#123;                     timeout = setTimeout(() =&gt; &#123;                         timeout = null;                         func.apply(context, args)                     &#125;, wait)                 &#125;             &#125;         &#125;     &#125;</code></p>
+<h4 id="节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件"><a href="#节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件" class="headerlink" title="节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件"></a>节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件</h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/20/newpapername/" data-id="cksy29kiu00049cu588gq4rrs" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/throttle/" data-id="cksy29kiv00059cu577e4ddgw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -102,19 +102,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/08/25/difOfAndroidAndIosTime/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          difOfAndroidAndIosTime
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/08/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/08/30/debounce/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">debounce防抖</div>
     </a>
   
 </nav>

@@ -64,6 +64,112 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-throttle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/30/throttle/" class="article-date">
+  <time datetime="2021-08-30T03:01:14.000Z" itemprop="datePublished">2021-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/30/throttle/">throttle节流</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="函数如下，调用方式-throttle-this-search-1000-1-其中this-search为本地的方法"><a href="#函数如下，调用方式-throttle-this-search-1000-1-其中this-search为本地的方法" class="headerlink" title="函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法"></a>函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法</h3><p><code>    /**     * @desc 函数节流     * @param func 函数     * @param wait 延迟执行毫秒数     * @param type 1 表时间戳版，2 表定时器版     */     const throttle = (func, wait ,type) =&gt; &#123;         let previous = 0;         let timeout;         return function() &#123;             let context = this;             let args = arguments;             if(type===1)&#123;                 let now = Date.now();                 if (now - previous &gt; wait) &#123;                     func.apply(context, args);                     previous = now;                 &#125;             &#125;else if(type===2)&#123;                 if (!timeout) &#123;                     timeout = setTimeout(() =&gt; &#123;                         timeout = null;                         func.apply(context, args)                     &#125;, wait)                 &#125;             &#125;         &#125;     &#125;</code></p>
+<h4 id="节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件"><a href="#节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件" class="headerlink" title="节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件"></a>节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hexo.chenxt.top/2021/08/30/throttle/" data-id="cksy29kiv00059cu577e4ddgw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-debounce" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/30/debounce/" class="article-date">
+  <time datetime="2021-08-30T02:55:53.000Z" itemprop="datePublished">2021-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/30/debounce/">debounce防抖</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="复杂版本防抖函数-参数分别为-方法名字，延时的毫秒数-是否立即执行-true的话，就不延时了，false延时-调用方式-debounce-this-search-1000-true-此处this-search是本地的方法"><a href="#复杂版本防抖函数-参数分别为-方法名字，延时的毫秒数-是否立即执行-true的话，就不延时了，false延时-调用方式-debounce-this-search-1000-true-此处this-search是本地的方法" class="headerlink" title="复杂版本防抖函数,参数分别为,方法名字，延时的毫秒数,是否立即执行(true的话，就不延时了，false延时),调用方式: debounce(this.search,1000,true)(),此处this.search是本地的方法"></a>复杂版本防抖函数,参数分别为,方法名字，延时的毫秒数,是否立即执行(true的话，就不延时了，false延时),调用方式: debounce(this.search,1000,true)(),此处this.search是本地的方法</h3><pre><code>`
+    const debounce = (fn,delay,immediate) =&gt; &#123;
+        let timeout;
+        return function() &#123;
+            let context = this;
+            let args = arguments;
+            if (timeout) clearTimeout(timeout);
+            if (immediate) &#123;
+                var callNow = !timeout;
+                timeout = setTimeout(() =&gt; &#123;
+                    timeout = null;
+                &#125;, delay)
+                if (callNow) fn.apply(context, args)
+            &#125;
+            else &#123;
+                timeout = setTimeout(()=&gt;&#123;
+                    fn.apply(context, args)
+                &#125;, delay);
+            &#125;
+        &#125;
+    &#125;
+`
+</code></pre>
+<h3 id="简化版防抖-参数分别为，方法名字，延时毫秒数-调用方式-debounce-this-search-1000"><a href="#简化版防抖-参数分别为，方法名字，延时毫秒数-调用方式-debounce-this-search-1000" class="headerlink" title="简化版防抖,参数分别为，方法名字，延时毫秒数,调用方式,debounce(this.search,1000)()"></a>简化版防抖,参数分别为，方法名字，延时毫秒数,调用方式,debounce(this.search,1000)()</h3><pre><code>`
+    const debunce = (fn,delay) =&gt; &#123;
+        let timer = null
+        if(timer)&#123;
+            clearTimeout(timer)
+        &#125;
+        timer = setTimeout(fn,delay)
+    &#125;
+`
+</code></pre>
+<h4 id="防抖的意思是，触发后，多少秒后再执行。举个例子，就像电梯，上来一个人，电梯就会在比如5S后启动，然后在这5S内，又上来一个人，那么电梯就重新计时5S后启动。比较常用与监控页面大小变化或者输入监控"><a href="#防抖的意思是，触发后，多少秒后再执行。举个例子，就像电梯，上来一个人，电梯就会在比如5S后启动，然后在这5S内，又上来一个人，那么电梯就重新计时5S后启动。比较常用与监控页面大小变化或者输入监控" class="headerlink" title="防抖的意思是，触发后，多少秒后再执行。举个例子，就像电梯，上来一个人，电梯就会在比如5S后启动，然后在这5S内，又上来一个人，那么电梯就重新计时5S后启动。比较常用与监控页面大小变化或者输入监控"></a>防抖的意思是，触发后，多少秒后再执行。举个例子，就像电梯，上来一个人，电梯就会在比如5S后启动，然后在这5S内，又上来一个人，那么电梯就重新计时5S后启动。比较常用与监控页面大小变化或者输入监控</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hexo.chenxt.top/2021/08/30/debounce/" data-id="cksy29kit00039cu5heg281d0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-computed" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/08/30/computed/" class="article-date">
@@ -78,7 +184,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/30/computed/">computed</a>
+      <a class="article-title" href="/2021/08/30/computed/">computed计算属性的用法区别</a>
     </h1>
   
 
@@ -86,7 +192,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="computed计算属性的用法区别"><a href="#computed计算属性的用法区别" class="headerlink" title="computed计算属性的用法区别"></a>computed计算属性的用法区别</h2><h3 id="如果是不传参（比如计算属性名字是getPhone），调用方式-getPhone"><a href="#如果是不传参（比如计算属性名字是getPhone），调用方式-getPhone" class="headerlink" title="如果是不传参（比如计算属性名字是getPhone），调用方式 getPhone"></a>如果是不传参（比如计算属性名字是getPhone），调用方式 getPhone</h3><pre><code>`
+        <h3 id="如果是不传参（比如计算属性名字是getPhone），调用方式-getPhone"><a href="#如果是不传参（比如计算属性名字是getPhone），调用方式-getPhone" class="headerlink" title="如果是不传参（比如计算属性名字是getPhone），调用方式 getPhone"></a>如果是不传参（比如计算属性名字是getPhone），调用方式 getPhone</h3><pre><code>`
     computed:&#123;
         getPhone()&#123;
             return &#39;一系列操作&#39;
@@ -117,7 +223,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/computed/" data-id="cksy0qxj20001nwu5efl7hryo" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/computed/" data-id="cksy29kin00009cu5f0nv8lfp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,7 +281,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/25/difOfAndroidAndIosTime/" data-id="cksy0qxj50003nwu5b32f5iwq" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/25/difOfAndroidAndIosTime/" data-id="cksy29kir00019cu5drufa8gc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -212,7 +318,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/20/newpapername/" data-id="cksy0qxj40002nwu5azg72q9g" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/20/newpapername/" data-id="cksy29kiu00049cu588gq4rrs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -261,7 +367,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/20/hello-world/" data-id="cksy0qxix0000nwu5fky14k44" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/20/hello-world/" data-id="cksy29kit00029cu511t95py6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -302,7 +408,15 @@ Android
       <ul>
         
           <li>
-            <a href="/2021/08/30/computed/">computed</a>
+            <a href="/2021/08/30/throttle/">throttle节流</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/30/debounce/">debounce防抖</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/30/computed/">computed计算属性的用法区别</a>
           </li>
         
           <li>
@@ -311,10 +425,6 @@ Android
         
           <li>
             <a href="/2021/08/20/newpapername/">newpapername</a>
-          </li>
-        
-          <li>
-            <a href="/2021/08/20/hello-world/">Hello World</a>
           </li>
         
       </ul>
