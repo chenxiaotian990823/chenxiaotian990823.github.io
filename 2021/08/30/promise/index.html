@@ -5,17 +5,17 @@
   
 
   
-  <title>throttle节流 | 小陈同学</title>
+  <title>promise基本用法 | 小陈同学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法&#96;     const throttle &#x3D; (func, wait ,type) &#x3D;&gt; &amp;#123;         let previous &#x3D; 0;         let timeout;         return function() &amp;#123;">
+  <meta name="description" content="promise 封装在方法内,比如方法为getPhone，可以进行传参，然后进行一些判断&#96;     getPhone(e)&amp;#123;         let p &#x3D; new Promise(() &#x3D;&gt;&amp;#123;             if(e &#x3D;&#x3D; 0)&amp;#123;                 resolve(&#39;成功&#39;)             &amp;#125;else">
 <meta property="og:type" content="article">
-<meta property="og:title" content="throttle节流">
-<meta property="og:url" content="https://hexo.chenxt.top/2021/08/30/throttle/index.html">
+<meta property="og:title" content="promise基本用法">
+<meta property="og:url" content="https://hexo.chenxt.top/2021/08/30/promise/index.html">
 <meta property="og:site_name" content="小陈同学">
-<meta property="og:description" content="函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法&#96;     const throttle &#x3D; (func, wait ,type) &#x3D;&gt; &amp;#123;         let previous &#x3D; 0;         let timeout;         return function() &amp;#123;">
+<meta property="og:description" content="promise 封装在方法内,比如方法为getPhone，可以进行传参，然后进行一些判断&#96;     getPhone(e)&amp;#123;         let p &#x3D; new Promise(() &#x3D;&gt;&amp;#123;             if(e &#x3D;&#x3D; 0)&amp;#123;                 resolve(&#39;成功&#39;)             &amp;#125;else">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-30T03:01:14.000Z">
-<meta property="article:modified_time" content="2021-08-30T03:08:45.448Z">
+<meta property="article:published_time" content="2021-08-30T03:15:09.000Z">
+<meta property="article:modified_time" content="2021-08-30T03:22:07.804Z">
 <meta property="article:author" content="小陈同学">
 <meta name="twitter:card" content="summary">
   
@@ -66,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-throttle" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-promise" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/08/30/throttle/" class="article-date">
-  <time datetime="2021-08-30T03:01:14.000Z" itemprop="datePublished">2021-08-30</time>
+    <a href="/2021/08/30/promise/" class="article-date">
+  <time datetime="2021-08-30T03:15:09.000Z" itemprop="datePublished">2021-08-30</time>
 </a>
     
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      throttle节流
+      promise基本用法
     </h1>
   
 
@@ -88,36 +88,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="函数如下，调用方式-throttle-this-search-1000-1-其中this-search为本地的方法"><a href="#函数如下，调用方式-throttle-this-search-1000-1-其中this-search为本地的方法" class="headerlink" title="函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法"></a>函数如下，调用方式: throttle(this.search,1000,1)(),其中this.search为本地的方法</h3><pre><code>`
-    const throttle = (func, wait ,type) =&gt; &#123;
-        let previous = 0;
-        let timeout;
-        return function() &#123;
-            let context = this;
-            let args = arguments;
-            if(type===1)&#123;
-                let now = Date.now();
-                if (now - previous &gt; wait) &#123;
-                    func.apply(context, args);
-                    previous = now;
-                &#125;
-            &#125;else if(type===2)&#123;
-                if (!timeout) &#123;
-                    timeout = setTimeout(() =&gt; &#123;
-                        timeout = null;
-                        func.apply(context, args)
-                    &#125;, wait)
-                &#125;
+        <h3 id="promise-封装在方法内-比如方法为getPhone，可以进行传参，然后进行一些判断"><a href="#promise-封装在方法内-比如方法为getPhone，可以进行传参，然后进行一些判断" class="headerlink" title="promise 封装在方法内,比如方法为getPhone，可以进行传参，然后进行一些判断"></a>promise 封装在方法内,比如方法为getPhone，可以进行传参，然后进行一些判断</h3><pre><code>`
+    getPhone(e)&#123;
+        let p = new Promise(() =&gt;&#123;
+            if(e == 0)&#123;
+                resolve(&#39;成功&#39;)
+            &#125;else&#123;
+                reject(&#39;失败&#39;)
             &#125;
-        &#125;
-    &#125;
+        &#125;)
+        return p
+    &#125;,
 `
 </code></pre>
-<h4 id="节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件"><a href="#节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件" class="headerlink" title="节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件"></a>节流的意思，就是多少秒内，只允许执行一次。常用于监控页面滚动，鼠标不断点击事件</h4>
+<h3 id="以上的调用方式-其中resolve回来的参数，在res中，reject中的参数，在err中"><a href="#以上的调用方式-其中resolve回来的参数，在res中，reject中的参数，在err中" class="headerlink" title="以上的调用方式:,其中resolve回来的参数，在res中，reject中的参数，在err中"></a>以上的调用方式:,其中resolve回来的参数，在res中，reject中的参数，在err中</h3><pre><code>`
+    this.getPhone(0)
+    .then(res =&gt;&#123;
+        console.log(res)
+    &#125;)
+    .catch(err =&gt;&#123;
+        console.log(err)
+    &#125;)
+`
+</code></pre>
+<h3 id="promise-all，当包含的所有promise中执行完，再进行操作-注-有一个失败就算失败，两个都成功才算成功"><a href="#promise-all，当包含的所有promise中执行完，再进行操作-注-有一个失败就算失败，两个都成功才算成功" class="headerlink" title="promise.all，当包含的所有promise中执行完，再进行操作,注:有一个失败就算失败，两个都成功才算成功"></a>promise.all，当包含的所有promise中执行完，再进行操作,注:有一个失败就算失败，两个都成功才算成功</h3><pre><code>`
+    let result = Promise.all([this.getPhone(0),this.getPhone(1)])
+    result.then(res =&gt;&#123;
+        console.log(res)
+    &#125;)
+    .catch(err =&gt;&#123;
+        console.log(err)
+    &#125;)
+`
+</code></pre>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/throttle/" data-id="cksy2sssv00046ou5h4kj6tbc" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/promise/" data-id="cksy2ssst00026ou512a0fx7t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -126,19 +134,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/08/30/promise/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          promise基本用法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/08/30/debounce/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/08/30/throttle/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">debounce防抖</div>
+      <div class="article-nav-title">throttle节流</div>
     </a>
   
 </nav>

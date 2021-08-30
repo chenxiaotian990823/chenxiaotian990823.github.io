@@ -64,6 +64,75 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-promise" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/30/promise/" class="article-date">
+  <time datetime="2021-08-30T03:15:09.000Z" itemprop="datePublished">2021-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/30/promise/">promise基本用法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="promise-封装在方法内-比如方法为getPhone，可以进行传参，然后进行一些判断"><a href="#promise-封装在方法内-比如方法为getPhone，可以进行传参，然后进行一些判断" class="headerlink" title="promise 封装在方法内,比如方法为getPhone，可以进行传参，然后进行一些判断"></a>promise 封装在方法内,比如方法为getPhone，可以进行传参，然后进行一些判断</h3><pre><code>`
+    getPhone(e)&#123;
+        let p = new Promise(() =&gt;&#123;
+            if(e == 0)&#123;
+                resolve(&#39;成功&#39;)
+            &#125;else&#123;
+                reject(&#39;失败&#39;)
+            &#125;
+        &#125;)
+        return p
+    &#125;,
+`
+</code></pre>
+<h3 id="以上的调用方式-其中resolve回来的参数，在res中，reject中的参数，在err中"><a href="#以上的调用方式-其中resolve回来的参数，在res中，reject中的参数，在err中" class="headerlink" title="以上的调用方式:,其中resolve回来的参数，在res中，reject中的参数，在err中"></a>以上的调用方式:,其中resolve回来的参数，在res中，reject中的参数，在err中</h3><pre><code>`
+    this.getPhone(0)
+    .then(res =&gt;&#123;
+        console.log(res)
+    &#125;)
+    .catch(err =&gt;&#123;
+        console.log(err)
+    &#125;)
+`
+</code></pre>
+<h3 id="promise-all，当包含的所有promise中执行完，再进行操作-注-有一个失败就算失败，两个都成功才算成功"><a href="#promise-all，当包含的所有promise中执行完，再进行操作-注-有一个失败就算失败，两个都成功才算成功" class="headerlink" title="promise.all，当包含的所有promise中执行完，再进行操作,注:有一个失败就算失败，两个都成功才算成功"></a>promise.all，当包含的所有promise中执行完，再进行操作,注:有一个失败就算失败，两个都成功才算成功</h3><pre><code>`
+    let result = Promise.all([this.getPhone(0),this.getPhone(1)])
+    result.then(res =&gt;&#123;
+        console.log(res)
+    &#125;)
+    .catch(err =&gt;&#123;
+        console.log(err)
+    &#125;)
+`
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hexo.chenxt.top/2021/08/30/promise/" data-id="cksy2ssst00026ou512a0fx7t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-throttle" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/08/30/throttle/" class="article-date">
@@ -115,7 +184,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/throttle/" data-id="cksy2fr5t0005ssu5glyyfgpo" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/throttle/" data-id="cksy2sssv00046ou5h4kj6tbc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -184,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/debounce/" data-id="cksy2fr5q0001ssu58fjg84g5" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/debounce/" data-id="cksy2ssso00006ou54nhmb6rq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -243,11 +312,11 @@
     &#125;
 `
 </code></pre>
-
+<h4 id="计算属性与methods方法的区别，计算属性有自己的缓存，相同参数只会调用一次，而methods不会，每次都要调用。所以计算属性性能更好"><a href="#计算属性与methods方法的区别，计算属性有自己的缓存，相同参数只会调用一次，而methods不会，每次都要调用。所以计算属性性能更好" class="headerlink" title="计算属性与methods方法的区别，计算属性有自己的缓存，相同参数只会调用一次，而methods不会，每次都要调用。所以计算属性性能更好"></a>计算属性与methods方法的区别，计算属性有自己的缓存，相同参数只会调用一次，而methods不会，每次都要调用。所以计算属性性能更好</h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/computed/" data-id="cksy2fr5m0000ssu5elrc03dy" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/computed/" data-id="cksy2sssv00056ou51nfwcrrc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -305,7 +374,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/25/difOfAndroidAndIosTime/" data-id="cksy2fr5r0002ssu5bsst2mrs" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/25/difOfAndroidAndIosTime/" data-id="cksy2sssw00066ou55mc13mih" class="article-share-link">Share</a>
       
       
     </footer>
@@ -342,7 +411,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/20/newpapername/" data-id="cksy2fr5t0004ssu51rwlflwe" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/20/newpapername/" data-id="cksy2sssu00036ou50z6b5zhj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -391,7 +460,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/20/hello-world/" data-id="cksy2fr5s0003ssu56x1e7mlw" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/20/hello-world/" data-id="cksy2ssss00016ou5aj5a7tyk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -432,6 +501,10 @@ Android
       <ul>
         
           <li>
+            <a href="/2021/08/30/promise/">promise基本用法</a>
+          </li>
+        
+          <li>
             <a href="/2021/08/30/throttle/">throttle节流</a>
           </li>
         
@@ -445,10 +518,6 @@ Android
         
           <li>
             <a href="/2021/08/25/difOfAndroidAndIosTime/">difOfAndroidAndIosTime</a>
-          </li>
-        
-          <li>
-            <a href="/2021/08/20/newpapername/">newpapername</a>
           </li>
         
       </ul>
