@@ -64,6 +64,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-currying柯里化函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/30/currying%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2021-08-30T03:24:16.000Z" itemprop="datePublished">2021-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/30/currying%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/">currying柯里化函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="我们平常写方法，比如写个加法，调用方式，this-add-4-5"><a href="#我们平常写方法，比如写个加法，调用方式，this-add-4-5" class="headerlink" title="我们平常写方法，比如写个加法，调用方式，this.add(4,5)"></a>我们平常写方法，比如写个加法，调用方式，this.add(4,5)</h3><pre><code>`
+    add(a,b)&#123;
+        return a + b
+    &#125;
+`
+</code></pre>
+<h3 id="使用currying后呢，我们可以写成-把原来的同时传两个参数，分开了，调用方式"><a href="#使用currying后呢，我们可以写成-把原来的同时传两个参数，分开了，调用方式" class="headerlink" title="使用currying后呢，我们可以写成,把原来的同时传两个参数，分开了，调用方式:"></a>使用currying后呢，我们可以写成,把原来的同时传两个参数，分开了，调用方式:</h3><pre><code>`
+    add(a)&#123;
+        return (b)=&gt;&#123;
+            return a + b
+        &#125;
+    &#125;
+`
+</code></pre>
+<h3 id="这么看上去好像没有必要，但是有时候我们比如封装了一个方法-但是我们有其中一个参数是固定的，比如我们总要算5-任意数"><a href="#这么看上去好像没有必要，但是有时候我们比如封装了一个方法-但是我们有其中一个参数是固定的，比如我们总要算5-任意数" class="headerlink" title="这么看上去好像没有必要，但是有时候我们比如封装了一个方法,但是我们有其中一个参数是固定的，比如我们总要算5+任意数"></a>这么看上去好像没有必要，但是有时候我们比如封装了一个方法,但是我们有其中一个参数是固定的，比如我们总要算5+任意数</h3><pre><code>`
+    add(a)&#123;
+        return (b) =&gt;&#123;
+            return a + b
+        &#125;
+    &#125;
+
+    let result = add(5)
+    console.log(result(5))
+`
+</code></pre>
+<h4 id="注-这样就可以封装一些常用的方法，比如正则表达式这种，总要验证手机号啥的，就可以类似封装"><a href="#注-这样就可以封装一些常用的方法，比如正则表达式这种，总要验证手机号啥的，就可以类似封装" class="headerlink" title="注:这样就可以封装一些常用的方法，比如正则表达式这种，总要验证手机号啥的，就可以类似封装"></a>注:这样就可以封装一些常用的方法，比如正则表达式这种，总要验证手机号啥的，就可以类似封装</h4><h5 id="这只是简单用法，详细用法可以参考一下-https-www-jianshu-com-p-2975c25e4d71"><a href="#这只是简单用法，详细用法可以参考一下-https-www-jianshu-com-p-2975c25e4d71" class="headerlink" title="这只是简单用法，详细用法可以参考一下 https://www.jianshu.com/p/2975c25e4d71"></a>这只是简单用法，详细用法可以参考一下 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2975c25e4d71">https://www.jianshu.com/p/2975c25e4d71</a></h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hexo.chenxt.top/2021/08/30/currying%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/" data-id="cksy3cul4000048u53tc5cwm0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-promise" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/08/30/promise/" class="article-date">
@@ -123,7 +184,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/promise/" data-id="cksy2ssst00026ou512a0fx7t" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/promise/" data-id="cksy3culd000748u57d6y2pfr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -184,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/throttle/" data-id="cksy2sssv00046ou5h4kj6tbc" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/throttle/" data-id="cksy3culb000448u563i760nu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -253,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/debounce/" data-id="cksy2ssso00006ou54nhmb6rq" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/debounce/" data-id="cksy3cul9000248u52f3gdk6h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -316,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/30/computed/" data-id="cksy2sssv00056ou51nfwcrrc" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/30/computed/" data-id="cksy3cul8000148u514oi18h6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -374,7 +435,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/25/difOfAndroidAndIosTime/" data-id="cksy2sssw00066ou55mc13mih" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/25/difOfAndroidAndIosTime/" data-id="cksy3cula000348u5aef55dw6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -411,7 +472,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/20/newpapername/" data-id="cksy2sssu00036ou50z6b5zhj" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/20/newpapername/" data-id="cksy3culc000648u5d1o4hqjd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -460,7 +521,7 @@ Android
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hexo.chenxt.top/2021/08/20/hello-world/" data-id="cksy2ssss00016ou5aj5a7tyk" class="article-share-link">Share</a>
+      <a data-url="https://hexo.chenxt.top/2021/08/20/hello-world/" data-id="cksy3culb000548u5g2ry1vfh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -501,6 +562,10 @@ Android
       <ul>
         
           <li>
+            <a href="/2021/08/30/currying%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/">currying柯里化函数</a>
+          </li>
+        
+          <li>
             <a href="/2021/08/30/promise/">promise基本用法</a>
           </li>
         
@@ -514,10 +579,6 @@ Android
         
           <li>
             <a href="/2021/08/30/computed/">computed计算属性的用法区别</a>
-          </li>
-        
-          <li>
-            <a href="/2021/08/25/difOfAndroidAndIosTime/">difOfAndroidAndIosTime</a>
           </li>
         
       </ul>
